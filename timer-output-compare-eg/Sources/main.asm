@@ -157,7 +157,7 @@ led_enable:
             DC.W  Entry           ; Reset Vector
             
             ; ------------------------------------
-; ISR configuration: Timer 4 
+; ISR configuration: Timer 5 
             org         $ffe4
             DC.W        timer_isr
 
