@@ -17,6 +17,7 @@ def parse_data(file_name):
 
             header_data = struct.unpack(">H8sHHH", header_bytes)
             print("header sentinels: " + str(hex(header_data[0])) + ", " + str(hex(header_data[4])))
+
             message_type = header_data[1].split(b'\0', 1)[0]  # remove the null characters from the string
             print(message_type)
             print("message size: " + str(header_data[2]))
@@ -26,7 +27,8 @@ def parse_data(file_name):
                 print("text message: " + str(text_bytes))
             elif message_type == b"gyro":
                 gyro_bytes = f.read(header_data[2])
-                print("gyro message: " + str(gyro_bytes[1]) + ", " + str(gyro_bytes[2]) + ", " + str(gyro_bytes[3]) + ", time=" + str(gyro_bytes[4]))
+                gyro_data = struct.unpack(">hhhhH", gyro_bytes)
+                print("gyro message: " + str(gyro_data[1]) + ", " + str(gyro_data[2]) + ", " + str(gyro_data[3]) + ", time=" + str(gyro_data[4]))
             elif message_type == b"buttons":
                 buttons_bytes = f.read(header_data[2])
                 print("buttons message: " + str(hex(buttons_bytes[1])) + ", time=" + str(buttons_bytes[2]))
