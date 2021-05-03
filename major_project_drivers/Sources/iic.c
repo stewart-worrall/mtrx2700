@@ -301,34 +301,7 @@ TIE=TIE | 0x80;
  
 }
 
-/*
-
-// Millisecond timer
-void INTERRUPT timer6(void)
-{
-    TFLG1 &= 0x40; // reset interrupt flag
-    TC6 += 24000;  // interrupt every 1ms
-    currentTime++;
-    if (alarmSet && currentTime == alarmTime)
-    {
-        alarmSignaled = 1;
-        alarmSet = 0;
-    }
-}
-
-   */
-
-
-/*  Interrupt   EMN */
-
-// interrupt(((0x10000-Vtimch7)/2)-1) void TC7_ISR(void){
-// the line above is to make it portable between differen
-// Freescale processors
-// The symbols for each interrupt ( in this case Vtimch7 )'
-// are defined in the provided variable definition file
-// I am usign a much simpler definition ( vector number) 
-// that is easier to understand
-
+// the interrupt for timer 7 which is used for a iic timeout
 #pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
 __interrupt void TC7_ISR(void) { 
    
