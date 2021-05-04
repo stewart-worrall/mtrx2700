@@ -16,14 +16,16 @@ void main(void) {
 
   GyroRaw read_gyro;
   
+  MagRaw read_magnet;
+  
   int error_code = NO_ERROR;
-  unsigned char buffer[32];
+  unsigned char buffer[64];
 
   // make sure the board is set to 24MHz
   PLL_Init();
   
   // initialise the simple serial
-	SCI1_Init(BAUD_9600);
+  SCI1_Init(BAUD_9600);
   
   // initialise the sensor suite
   error_code = iicSensorInit();
@@ -44,12 +46,13 @@ void main(void) {
     // read the raw values
     getRawDataGyro(&read_gyro);
     getRawDataAccel(&read_accel);
+    getRawDataMagnet(&read_magnet);
     
     // convert the acceleration to a scaled value
     convertUnits(&read_accel, &scaled_accel);    
     
     // format the string of the sensor data to go the the serial
-    sprintf(buffer, "%.2f, %.2f, %.2f, %d, %d, %d\r\n", scaled_accel.x, scaled_accel.y, scaled_accel.z, read_gyro.x, read_gyro.y, read_gyro.z);
+    sprintf(buffer, "%.2f, %.2f, %.2f, %d, %d, %d, %d, %d, %d \r\n", scaled_accel.x, scaled_accel.y, scaled_accel.z, read_gyro.x, read_gyro.y, read_gyro.z, read_magnet.x, read_magnet.y, read_magnet.z);
     
     // output the data to serial
     SCI1_OutString(buffer);

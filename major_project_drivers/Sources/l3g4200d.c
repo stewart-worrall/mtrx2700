@@ -60,8 +60,8 @@ IIC_ERRORS gyro_init(void);
 // Get the raw magnetic data from the sensor
 IIC_ERRORS getRawDataMagnet(MagRaw *raw_data)
 {        
-    iic_request_data(accel_wr, ADXL345_DATAX0);
-    return iic_read_data(accel_rd, (uint8_t *)raw_data, sizeof(AccelRaw));
+    iic_request_data(magnet_wr, HM5883_DATAX0);
+    return iic_read_data(magnet_rd, (uint8_t *)raw_data, sizeof(MagRaw));
 }
 
 
