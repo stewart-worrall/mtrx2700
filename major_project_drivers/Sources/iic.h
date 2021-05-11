@@ -41,6 +41,7 @@ IIC_ERRORS iic_send_data(uint8_t device, uint8_t *buffer, uint8_t buffer_size);
 
 // interrupt used for calculating the iic timeout
 __interrupt void TC7_ISR(void);
+void Init_TC7 (void);
 
 
 #endif
