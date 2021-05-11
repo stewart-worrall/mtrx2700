@@ -83,7 +83,6 @@ void main(void) {
     // format the string of the sensor data to go the the serial
     sprintf(buffer, "%.2f, %.2f, %.2f, %d, %d, %d, %d, %d, %d \r\n", scaled_accel.x, scaled_accel.y, scaled_accel.z, read_gyro.x, read_gyro.y, read_gyro.z, read_magnet.x, read_magnet.y, read_magnet.z);
     
-    sprintf(buffer, "test\r\n");
     // output the data to serial
     SCI1_OutString(buffer);
     
