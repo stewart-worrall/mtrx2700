@@ -11,6 +11,15 @@ __interrupt void UnimplementedISR(void)
    asm BGND;
 }
 
+#pragma CODE_SEG __NEAR_SEG NON_BANKED /* Interrupt section for this module. Placement will be in NON_BANKED area. */
+__interrupt void SoftwareInterrupt(void)
+{
+   /* ISRs trap for software interrupt.*/
+   volatile int interrupt_time;
+   interrupt_time = TCNT;
+   asm BGND;
+}
+
 
 
 typedef void (*near tIsrFunc)(void);
@@ -74,7 +83,7 @@ const tIsrFunc _vect[] @0xFF80 = {     /* Interrupt table */
         UnimplementedISR,                 /* vector 0x07 (RTIE) */
         UnimplementedISR,                 /* vector 0x06 */
         UnimplementedISR,                 /* vector 0x05 */
-        UnimplementedISR,                 /* vector 0x04 */
+        SoftwareInterrupt,                 /* vector 0x04 */
         UnimplementedISR,                 /* vector 0x03 */
         UnimplementedISR,                 /* vector 0x02 */
         UnimplementedISR,                 /* vector 0x01 */

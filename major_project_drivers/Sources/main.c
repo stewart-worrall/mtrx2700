@@ -1,4 +1,5 @@
 #include <hidef.h>      /* common defines and macros */
+#include <assert.h>
 #include "derivative.h"      /* derivative-specific definitions */
 
 // need this for string functions
@@ -21,6 +22,8 @@ void main(void) {
   
   int error_code = NO_ERROR;
   unsigned char buffer[128];
+  
+  //assert(error_code != NO_ERROR);
 
   #ifndef SIMULATION_TESTING
 
