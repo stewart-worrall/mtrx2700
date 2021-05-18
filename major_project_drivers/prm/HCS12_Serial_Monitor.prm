@@ -67,7 +67,7 @@ ENTRIES /* keep the following unreferenced variables */
   //_vectab OsBuildNumber _OsOrtiStackStart _OsOrtiStart
 END
 
-STACKSIZE 0x100
+STACKSIZE 0x1000
 
 VECTOR 0 _Startup /* reset vector: this is the default entry point for a C/C++ application. */
 //VECTOR 0 Entry  /* reset vector: this is the default entry point for an Assembly application. */
